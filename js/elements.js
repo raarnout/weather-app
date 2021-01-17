@@ -1,3 +1,5 @@
+export const ELEMENT_BODY = document.querySelector('body');
+
 export const ELEMENT_SEARCH_BUTTON = document.querySelector("button");
 export const ELEMENT_SEARCH_CITY = document.querySelector("#city");
 
@@ -10,4 +12,3 @@ export const ELEMENT_WEATHER_DESCRIPTION = document.querySelector(
 );
 export const ELEMENT_WEATHER_TEMPERATURE =
     ELEMENT_WEATHER_CONTAINER.lastElementChild;
-    
