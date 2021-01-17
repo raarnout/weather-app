@@ -3,6 +3,7 @@ import Http from "./http.js";
 import { WeatherData, WEATER_PROXY_HANDLER } from "./weather-data.js";
 
 const APP_ID = "c7395a93e5c9f2caf9edeb2d2ba2a8e2";
+const LOADING_TEXT = ELEMENTS.ELEMENT_LOADING_TEXT;
 
 const search = () => {
 		const CITY_NAME = ELEMENTS.ELEMENT_SEARCH_CITY.value.trim();
@@ -10,9 +11,10 @@ const search = () => {
 		if (CITY_NAME.length === 0) {
 			return alert("Please enter a city name.");
 		}
+		
+		LOADING_TEXT.style.display = "block";
+		const URL = `http://api.openweathermap.org/data/2.5/weather?q=${CITY_NAME}&units=metric&appid=${APP_ID}`;
 
-        const URL = `http://api.openweathermap.org/data/2.5/weather?q=${CITY_NAME}&units=metric&appid=${APP_ID}`;
-        
 		Http.fetchData(URL)
 			.then((responseData) => {
 				const WEATHER_DATA = new WeatherData(
@@ -29,7 +31,9 @@ const search = () => {
 	update = (weatherData) => {
 		ELEMENTS.ELEMENT_WEATHER_CITY.textContent = weatherData.city;
 		ELEMENTS.ELEMENT_WEATHER_DESCRIPTION.textContent = weatherData.description;
-		ELEMENTS.ELEMENT_WEATHER_TEMPERATURE.textContent = weatherData.temperature;
+        ELEMENTS.ELEMENT_WEATHER_TEMPERATURE.textContent = weatherData.temperature;
+        
+        LOADING_TEXT.style.display = "none";
 	},
 	showContainer = (show) => {
 		const display = show === true ? "block" : "none";
