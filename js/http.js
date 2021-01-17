@@ -5,13 +5,13 @@ class Http {
 			HTTP.open("GET", url);
 			HTTP.onreadystatechange = function () {
 				if (HTTP.readyState === XMLHttpRequest.DONE && HTTP.status === 200) {
-                    const RESPONSE_DATA = JSON.parse(HTTP.responseText);
-                    resolve(RESPONSE_DATA);
+					const RESPONSE_DATA = JSON.parse(HTTP.responseText);
+					resolve(RESPONSE_DATA);
 				} else if (HTTP.readyState === XMLHttpRequest.DONE) {
-                    reject('Something went wrong while fetching data.')
-                }
-            };
-            HTTP.send();
+					reject("Something went wrong while fetching data.");
+				}
+			};
+			HTTP.send();
 		});
 	}
 }
